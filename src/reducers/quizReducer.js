@@ -2,15 +2,14 @@ export const initialState = {
     questions: [],
     status: 'loading', // Available statuses: loading, error, ready, active, finished
     index: 0,
-    answer: null,
+    answers: [],
     points: 0,
     highscore: 0,
 };
 
-export default (state, action) => {
+export default function quizReducer(state, action) {
     switch (action.type) {
         case 'dataReceived':
-            console.log('Received');
             return {
                 ...state,
                 questions: action.payload.questions ? action.payload.questions : state.questions,
@@ -29,20 +28,25 @@ export default (state, action) => {
                 status: 'ready',
                 highscore: state.highscore
             }
-        case 'newAnswer':
+        case 'questionAnswered':
             const question = state.questions.at(state.index);
             const questionPoints = question.points;
+            const correctAnswer = question.options[question.correctOption];
 
             return {
                 ...state,
-                answer: action.payload,
-                points: action.payload === question.correctOption ? state.points + questionPoints : state.points
+                answers: [...state.answers, action.payload],
+                points: action.payload === correctAnswer ? state.points + questionPoints : state.points
             }
         case 'nextQuestion':
             return {
                 ...state,
-                index: state.index++,
-                answer: null,
+                index: state.index + 1,
+            }
+        case 'previousQuestion':
+            return {
+                ...state,
+                index: state.index - 1,
             }
         case 'dataFailed':
             return {

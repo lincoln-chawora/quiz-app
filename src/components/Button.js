@@ -1,6 +1,5 @@
-export default function Button({answer, children, onHandleClick}) {
-    if (answer === null) return;
+export default function Button({answers, index, children, onHandleClick}) {
     return (
-        <button className="btn btn-ui" onClick={onHandleClick}>{children}</button>
+        <button className="btn btn-ui" disabled={answers[index] === undefined} onClick={onHandleClick}>{children}</button>
     )
 }

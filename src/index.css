@@ -140,9 +140,9 @@ progress {
   cursor: not-allowed;
 }
 
-.btn-ui {
-  float: right;
-}
+/*.btn-ui {*/
+/*  float: right;*/
+/*}*/
 
 .options {
   display: flex;
@@ -205,12 +205,22 @@ progress {
 }
 
 .timer {
-  float: left;
+  width: 110px;
+  text-align: center;
   font-size: 1.8rem;
   color: var(--color-medium);
   border: 2px solid var(--color-dark);
   padding: 1.35rem 2.8rem;
   border-radius: 100px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .btn-container {
+  display: flex;
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
