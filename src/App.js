@@ -13,12 +13,6 @@ import Timer from "./components/Timer";
 import quizReducer, {initialState} from "./reducers/quizReducer";
 import {useQuestionData} from "./hooks/useQuestionData";
 
-/* --- Feature ideas ---
-1. ✅ Shuffle answers
-2. ✅ Log all answers so user can go back to review
-3. ✅ Update highscore into api
- */
-
 export default function App() {
     const [{questions, status, index, answers, points, highscore}, dispatch] = useReducer(quizReducer, initialState);
     useQuestionData(dispatch);
@@ -34,7 +28,6 @@ export default function App() {
     return (
       <div className="app">
         <Header />
-
           <Main>
               {status === 'loading' && <Loader />}
               {status === 'error' && <ErrorMessage />}
@@ -52,7 +45,6 @@ export default function App() {
 
                       <Footer>
                           <Timer dispatch={dispatch} totalQuestions={numberOfQuestions} />
-
 
                           <div className="btn-container">
                               {index > 0 &&
