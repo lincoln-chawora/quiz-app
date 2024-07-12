@@ -17,7 +17,9 @@ export default function Options() {
     const hasAnswered = answers[index] !== undefined;
     const correctAnswer = question.options[question.correctOption];
 
-    // useMemo to ensure that answers are only shuffled on initial render.
+    // useMemo to store the result of the shuffle in a cache, a reshuffle will only occur if
+    // question.options changes. This prevents the order changing when the component is
+    // rendered from an answer being selected (an action which doesn't change the questions state).
     const answerOptions = useMemo(() => {
         return shuffleArray(question.options.map(i => i));
     }, [question.options]);
