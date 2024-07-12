@@ -1,8 +1,11 @@
 import {useEffect} from "react";
+import {useQuizContext} from "../contexts/QuizProvider";
 
-export default function FinishedScreen({points, maxPossiblePoints, highscore, dispatch}) {
+export default function FinishedScreen() {
+    const {maxPossiblePoints, points, highscore, dispatch} = useQuizContext();
+
     useEffect(() => {
-        fetch('http://localhost:9000/score/1', {
+        fetch('http://localhost:8000/score/1', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'

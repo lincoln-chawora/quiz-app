@@ -1,8 +1,11 @@
 import {useEffect, useState} from "react";
+import {useQuizContext} from "../contexts/QuizProvider";
 const SECS_PER_QUESTION = 30;
 
-export default function Timer({dispatch, totalQuestions}) {
-    const [seconds, setSeconds] = useState(totalQuestions * SECS_PER_QUESTION);
+export default function Timer() {
+    const {numberOfQuestions, dispatch} = useQuizContext();
+
+    const [seconds, setSeconds] = useState(numberOfQuestions * SECS_PER_QUESTION);
 
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;

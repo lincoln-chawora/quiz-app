@@ -6,7 +6,7 @@ export function useQuestionData(dispatch) {
 
         async function getQuestions() {
             try {
-                const response = await fetch('http://localhost:9000/questions', {signal: controller.signal});
+                const response = await fetch('http://localhost:8000/questions', {signal: controller.signal});
 
                 if (!response.ok) throw new Error('Something went wrong with fetching questions.');
 
@@ -18,7 +18,7 @@ export function useQuestionData(dispatch) {
 
         async function getScore(questionData) {
             try {
-                const response = await fetch('http://localhost:9000/score/1', {signal: controller.signal});
+                const response = await fetch('http://localhost:8000/score/1', {signal: controller.signal});
 
                 if (!response.ok) {
                     dispatch({type: 'dataReceived',payload: {questions: questionData}})

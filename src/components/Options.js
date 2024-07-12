@@ -1,4 +1,5 @@
 import {useMemo} from "react";
+import {useQuizContext} from "../contexts/QuizProvider";
 
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i >= 0; i--) {
@@ -9,8 +10,10 @@ const shuffleArray = (array) => {
     return array;
 }
 
-export default function Options({answers, dispatch,question}) {
-    const index = question.id - 1;
+export default function Options() {
+    const {answers, index, questions, dispatch} = useQuizContext();
+
+    const question = questions[index];
     const hasAnswered = answers[index] !== undefined;
     const correctAnswer = question.options[question.correctOption];
 
